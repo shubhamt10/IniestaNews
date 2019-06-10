@@ -1,6 +1,7 @@
 package com.iniesta.iniestanews;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -49,7 +53,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         holder.titleTextView.setText(item.getTitle());
         holder.descriptionTextView.setText(item.getDescription());
+        holder.share_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, item.getUrl());
+                sendIntent.setType("text/plain");
+                context.startActivity(sendIntent);
 
+            }
+        });
         if (item.getUrlToImage().equals("empty")) {
             holder.imageView.setImageResource(R.drawable.bottom_shadow);
         } else {
@@ -69,6 +83,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     public interface RecyclerViewClickListener {
         void onClick(View view, int position);
+
     }
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -76,14 +91,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         protected ImageView imageView;
         protected TextView titleTextView;
         protected TextView descriptionTextView;
+        protected ImageButton share_button;
         private RecyclerViewClickListener hListener;
+        private String url;
 
-        public NewsViewHolder(@NonNull View itemView, RecyclerViewClickListener listener) {
+        public NewsViewHolder(@NonNull final View itemView, RecyclerViewClickListener listener) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.img);
             titleTextView = itemView.findViewById(R.id.title);
             descriptionTextView = itemView.findViewById(R.id.desc);
+            share_button=itemView.findViewById(R.id.share);
+
             hListener = listener;
             itemView.setOnClickListener(this);
 
@@ -92,8 +111,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         @Override
         public void onClick(View view) {
             hListener.onClick(view, getAdapterPosition());
+
         }
     }
+
 
     private RequestListener<Drawable> requestListener = new RequestListener<Drawable>() {
 
@@ -110,5 +131,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             // everything worked out, so probably nothing to do
             return false;
         }
+
     };
 }

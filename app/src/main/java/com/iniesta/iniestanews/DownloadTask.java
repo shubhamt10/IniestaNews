@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -21,14 +23,17 @@ import java.util.List;
 
 public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
     private List<NewsItem> newsItems = new ArrayList<>();
+    String url;
     private Context mContext;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
+    ImageButton b1;
 
     public DownloadTask(RecyclerView recyclerView, ProgressBar progressBar, Context context) {
         mContext = context;
         mRecyclerView = recyclerView;
         mProgressBar = progressBar;
+
     }
 
     @Override
@@ -46,12 +51,16 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
             public void onClick(View view, int position) {
                 NewsItem item = newsItems.get(position);
                 String webUrl = item.getUrl();
+                url=webUrl;
                 Toast.makeText(mContext,"Url: " + webUrl,Toast.LENGTH_SHORT).show();
+
 //                Intent intent = new Intent(mContext,WebActivity.class);
 //                intent.putExtra("webUrl",webUrl);
 //                mContext.startActivity(intent);
             }
         };
+
+
         RecyclerView.LayoutManager manager = new LinearLayoutManager(mContext);
         NewsAdapter adapter = new NewsAdapter(newsItems,mContext,listener);
         mRecyclerView.setLayoutManager(manager);
@@ -65,6 +74,8 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
         URL mainUrl;
         HttpURLConnection urlConnection;
         String result = "";
+         b1=mRecyclerView.findViewById(R.id.share);
+
 
         try {
             mainUrl = new URL(strings[0]);
