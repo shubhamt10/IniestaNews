@@ -96,7 +96,6 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
                 url = article.getString("url");
                 urlImage = article.getString("urlToImage");
                 description = article.getString("description");
-                System.out.println(title + "\n" + url + "\n" + urlImage);
                 if (urlImage.equals("null")){
                     newsItems.add(new NewsItem(title,url,"empty",description));
                 }else {
