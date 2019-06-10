@@ -48,6 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         final NewsItem item = newsItems.get(position);
 
         holder.titleTextView.setText(item.getTitle());
+        holder.descriptionTextView.setText(item.getDescription());
 
         if (item.getUrlToImage().equals("empty")) {
             holder.imageView.setImageResource(R.drawable.bottom_shadow);
@@ -74,6 +75,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         protected ImageView imageView;
         protected TextView titleTextView;
+        protected TextView descriptionTextView;
         private RecyclerViewClickListener hListener;
 
         public NewsViewHolder(@NonNull View itemView, RecyclerViewClickListener listener) {
@@ -81,6 +83,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
             imageView = itemView.findViewById(R.id.img);
             titleTextView = itemView.findViewById(R.id.title);
+            descriptionTextView = itemView.findViewById(R.id.desc);
             hListener = listener;
             itemView.setOnClickListener(this);
 
@@ -96,7 +99,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-            // todo log exception to central service or something like that
             System.out.println(e.getMessage());
 
             // important to return false so the error placeholder can be placed
