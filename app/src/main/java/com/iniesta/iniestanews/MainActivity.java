@@ -36,11 +36,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void addFragments(){
 
-            adapter.addFragment(new HomeFragment(), "Top");
-            adapter.addFragment(new HomeFragment(), "Sports");
-            adapter.addFragment(new HomeFragment(), "Business");
-            adapter.addFragment(new HomeFragment(), "Science");
-            adapter.addFragment(new HomeFragment(), "Technology");
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("url", "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6");
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("url", "https://newsapi.org/v2/top-headlines?category=sports&country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6");
+        Bundle bundle3 = new Bundle();
+        bundle3.putString("url", "https://newsapi.org/v2/top-headlines?category=business&country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6");
+        Bundle bundle4 = new Bundle();
+        bundle4.putString("url", "https://newsapi.org/v2/top-headlines?category=science&country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6");
+        Bundle bundle5 = new Bundle();
+        bundle5.putString("url", "https://newsapi.org/v2/top-headlines?category=technology&country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6");
+
+        HomeFragment fragment1 = new HomeFragment();
+        fragment1.setArguments(bundle1);
+        HomeFragment fragment2 = new HomeFragment();
+        fragment2.setArguments(bundle2);
+        HomeFragment fragment3 = new HomeFragment();
+        fragment3.setArguments(bundle3);
+        HomeFragment fragment4 = new HomeFragment();
+        fragment4.setArguments(bundle4);
+        HomeFragment fragment5 = new HomeFragment();
+        fragment5.setArguments(bundle5);
+
+        adapter.addFragment(fragment1, "Top");
+        adapter.addFragment(fragment2, "Sports");
+        adapter.addFragment(fragment3, "Business");
+        adapter.addFragment(fragment4, "Science");
+        adapter.addFragment(fragment5, "Technology");
 
     }
 }
