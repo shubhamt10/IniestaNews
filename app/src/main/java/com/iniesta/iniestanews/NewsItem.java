@@ -4,11 +4,13 @@ public class NewsItem {
     private String title;
     private String url;
     private String urlToImage;
+    private String description;
 
-    public NewsItem(String title, String url, String urlToImage) {
+    public NewsItem(String title, String url, String urlToImage,String description) {
         this.title = title;
         this.url = url;
         this.urlToImage = urlToImage;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -21,5 +23,9 @@ public class NewsItem {
 
     public String getUrlToImage() {
         return urlToImage;
+    }
+
+    public String getDescription(){
+        return description;
     }
 }
