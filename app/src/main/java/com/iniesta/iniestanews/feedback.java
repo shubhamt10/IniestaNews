@@ -1,6 +1,7 @@
 package com.iniesta.iniestanews;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,6 +43,17 @@ public class feedback extends Fragment {
                 text=v.findViewById(R.id.messages);
                 email=v.findViewById(R.id.mail);
                 Toast.makeText(getActivity(), "Feedback submitted ", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/html");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"customercare@iniestawebtech.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Feedback for quizApp");
+                i.putExtra(Intent.EXTRA_TEXT, "Name : "+name+"\nMessage : "+text);
+                try {
+                    startActivity(Intent.createChooser(i, "Send feedback..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(getActivity(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
