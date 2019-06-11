@@ -90,7 +90,7 @@ public class FragmentsActivity extends AppCompatActivity {
                 fragment = new feedback();
                 break;
             case "contactUs":
-                fragment = new settings();
+                fragment = new About_us();
                 break;
             case "settings":
                 fragment = new settings();
