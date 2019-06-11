@@ -74,7 +74,7 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
         URL mainUrl;
         HttpURLConnection urlConnection;
         String result = "";
-         b1=mRecyclerView.findViewById(R.id.share);
+
 
 
         try {
