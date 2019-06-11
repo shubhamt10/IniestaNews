@@ -1,42 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
+    tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-
-        <item android:id="@+id/nav_dashboard"
-
-            android:title="Dashboard"
-            />
-
-        <item android:id="@+id/nav_profile"
-            android:title="Profile"
-            />
-        <item android:id="@+id/nav_instructions"
-
-            android:title="Instructions"
-            />
-
+            <item android:id="@+id/latest_news"
+            android:title="Latest News" />
+            <item android:id="@+id/nav_entertainment"
+            android:title="Entertainment" />
+            <item android:id="@+id/nav_politics"
+            android:title="Politics" />
+            <item android:id="@+id/nav_gadgets"
+            android:title="Gadgets" />
+            <item android:id="@+id/nav_delhiNCR"
+            android:title="Delhi-NCR" />
+            <item android:id="@+id/nav_sports"
+            android:title="Sports" />
+            <item android:id="@+id/nav_business"
+            android:title="Business" />
+            <item android:id="@+id/nav_health"
+            android:title="Health" />
+            <item android:id="@+id/nav_education"
+            android:title="Education" />
+            <item android:id="@+id/world_news"
+            android:title="World" />
+            <item android:id="@+id/national_news"
+            android:title="National" />
     </group>
-    <item android:title="Communicate">
+    <item android:title="Support">
         <menu>
+            <item android:id="@+id/nav_share"
+                android:title="Share"/>
             <item android:id="@+id/nav_feedback"
-
                 android:title="Feedback"/>
-
-            <item android:id="@+id/nav_about_us"
-                android:title="About us"/>
-
-            <item android:id="@+id/nav_logout"
-
-                android:title="Logout"/>
+            <item android:id="@+id/nav_contact_us"
+                android:title="Contact us"/>
         </menu>
-
-
-
     </item>
+    <item android:title="Personalize">
+        <menu>
+            <item android:id="@+id/nav_settings"
+                android:title="Settings"/>
+        </menu>
+    </item>
+
 
 
 </menu>

@@ -71,7 +71,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                     .load(item.getUrlToImage())
                     .listener(requestListener)
                     .apply(new RequestOptions()
-                            .error(R.drawable.bottom_shadow))
+                            .error(R.drawable.noimg))
                     .into(holder.imageView);
         }
     }
