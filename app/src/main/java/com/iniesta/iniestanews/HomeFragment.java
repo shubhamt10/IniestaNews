@@ -1,5 +1,7 @@
 package com.iniesta.iniestanews;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView latestRecyclerView;
     private ProgressBar latestProgressBar;
     public String latestUrl ;
+
     //= "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6";
 
 
@@ -27,6 +30,7 @@ public class HomeFragment extends Fragment {
         }catch (NullPointerException e){
             e.getMessage();
             Toast.makeText(getContext(),latestUrl,Toast.LENGTH_LONG).show();
+
         }
     }
 
@@ -37,6 +41,7 @@ public class HomeFragment extends Fragment {
 
         latestRecyclerView = view.findViewById(R.id.latestRecyclerView);
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
+
         new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl);
 
 

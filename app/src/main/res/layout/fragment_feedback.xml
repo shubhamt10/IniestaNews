@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feedback">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="@dimen/spacing_large"
+        android:scrollbars="none"
+        android:id="@+id/scroll"
+        android:scrollingCache="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey_40">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:id="@+id/name"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:theme="@style/EditText.Accent" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_middle" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/txt_area_dark_accent"
+                android:padding="@dimen/spacing_large"
+                android:textColorHint="@color/grey_40">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="top"
+                    android:hint="Message"
+                    android:id="@+id/messages"
+                    android:inputType="textMultiLine"
+                    android:maxLines="12"
+                    android:minLines="7"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:theme="@style/EditText.Accent" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey_40">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email address"
+                    android:id="@+id/mail"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:theme="@style/EditText.Accent" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:layout_width="88dp"
+                android:layout_height="82dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/submit"
+                android:id="@+id/button"
+                android:layout_marginRight="30dp"
+                android:paddingRight="25dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginLeft="270dp"
+                android:background="@color/white"/>
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+</FrameLayout>
