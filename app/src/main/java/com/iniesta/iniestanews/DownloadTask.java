@@ -3,6 +3,9 @@ package com.iniesta.iniestanews;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -54,9 +57,18 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
                 url=webUrl;
                 Toast.makeText(mContext,"Url: " + webUrl,Toast.LENGTH_SHORT).show();
 
-//                Intent intent = new Intent(mContext,WebActivity.class);
-//                intent.putExtra("webUrl",webUrl);
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext,NewsDetailActivity.class);
+                intent.putExtra("webUrl",webUrl);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("img",  item.getUrlToImage());
+
+//                Pair<View, String> pair = Pair.create((View)imageView, ViewCompat.getTransitionName(imageView));
+//                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                        MainActivity.this,
+//                        pair
+//                );
+
+                mContext.startActivity(intent);
             }
         };
 

@@ -8,6 +8,10 @@
     <color name="colorAccentLight">#ffa15a</color>
     <color name="bgSplashScreen">#263238</color>
 
+    <color name="colorBackground">#f9f9fa</color>
+    <color name="colorTextSubtitle">#4e4e4e</color>
+    <color name="colorTextTitle">#262626</color>
+
 
     <color name="blackLight">#202020</color>
     <color name="grayLight">#6c6c6c</color>
