@@ -87,7 +87,7 @@ public class FragmentsActivity extends AppCompatActivity {
                 fragment.setArguments(bundle1);
                 break;
             case "feedback":
-                fragment = new settings();
+                fragment = new feedback();
                 break;
             case "contactUs":
                 fragment = new settings();

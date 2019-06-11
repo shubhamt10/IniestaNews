@@ -33,7 +33,7 @@ public class feedback extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_feedback, container, false);
-
+        submit=v.findViewById(R.id.button);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
