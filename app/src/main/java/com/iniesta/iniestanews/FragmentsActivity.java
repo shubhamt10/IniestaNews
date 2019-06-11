@@ -15,12 +15,12 @@ public class FragmentsActivity extends AppCompatActivity {
         String type = getIntent().getStringExtra("type");
         Fragment fragment;
         if (type.equals("settings")){
-//            fragment = new settings();
-//            getSupportFragmentManager().beginTransaction()
-//              .replace(R.id.fragments_container,fragment)
-//                    .add(new settings, "dash")
-//                    .addToBackStack("dash")
-//                        .commit();
+            fragment = new settings();
+            getSupportFragmentManager().beginTransaction()
+              .replace(R.id.fragments_container,fragment)
+                    .add(new settings(), "settings")
+                    .addToBackStack("settings")
+                        .commit();
         }
 
     }
