@@ -2,34 +2,37 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
-    android:background="@color/colorAccent"
+    android:layout_height="90dp"
+    android:background="@color/white"
     android:gravity="bottom"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_marginLeft="10dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_vertical"
-        android:id="@+id/textimageview"/>
-
     <TextView
         android:id="@+id/nav_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textSize="14sp"/>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Iniesta News"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_gravity="center_vertical"
+        android:textStyle="bold"
+        android:textColor="@color/grey_900"
+        android:layout_margin="8dp"/>
 
-    <TextView
-        android:id="@+id/nav_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="5dp"
-        android:textSize="14sp"/>
+
+
+    <ImageView
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/iniesta_logo"
+        android:layout_gravity="center_vertical"
+        />
 
 
 </LinearLayout>
