@@ -145,18 +145,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentsActivity.putExtra("type","national");
                 startActivity(fragmentsActivity);
                 break;
+            case R.id.nav_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Iniesta News");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
             case R.id.nav_feedback:
                 fragmentsActivity.putExtra("type","feedback");
                 startActivity(fragmentsActivity);
                 break;
             case R.id.nav_contact_us:
                 fragmentsActivity.putExtra("type","contactUs");
+                startActivity(fragmentsActivity);
                 break;
             case R.id.nav_settings:
                 fragmentsActivity.putExtra("type","settings");
+                startActivity(fragmentsActivity);
                 break;
         }
-        startActivity(fragmentsActivity);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
