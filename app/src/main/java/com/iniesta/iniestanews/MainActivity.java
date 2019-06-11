@@ -1,6 +1,7 @@
 package com.iniesta.iniestanews;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -8,6 +9,9 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,9 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager viewPager;
     private PagerAdapter adapter;
     DrawerLayout drawer;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Intent fragmentsActivity = new Intent(MainActivity.this,FragmentsActivity.class);
+        switch (menuItem.getItemId()) {
+
+            case R.id.nav_settings:
+
+                fragmentsActivity.putExtra("type","settings");
+                startActivity(fragmentsActivity);
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id., frag)
+//                        .add(new DashboardFragment(), "dash")
+//                        .addToBackStack("dash")
+//                        .commit();
+                break;
+//            case R.id.nav_profile:
+//                Fragment frag1 = new ProfileFragment();
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, frag1)
+//                        .add(new ProfileFragment(), "dash")
+//                        .addToBackStack("dash")
+//                        .commit();
+//                break;
+//
+//            case R.id.nav_instructions:
+//
+//                Fragment frag2 = new InstructionFragment();
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, frag2)
+//                        .add(new InstructionFragment(), "dash")
+//                        .addToBackStack("dash")
+//                        .commit();
+//                break;
+//
+//            case R.id.nav_feedback:
+//                Fragment frag3 = new FeedbackFragment();
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, frag3)
+//                        .add(new FeedbackFragment(), "dash")
+//                        .addToBackStack("dash")
+//                        .commit();
+//                break;
+//
+//            case R.id.nav_about_us:
+//
+//                Fragment frag4 = new AboutUsFragment();
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, frag4)
+//                        .add(new AboutUsFragment(), "dash")
+//                        .addToBackStack("dash")
+//                        .commit();
+//                break;
+//            case R.id.nav_logout:
+//                showPopup();
+//                break;
+
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
