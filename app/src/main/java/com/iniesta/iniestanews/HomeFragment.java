@@ -39,6 +39,7 @@ public class HomeFragment extends Fragment {
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
         new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl);
 
+
         return view;
     }
 
