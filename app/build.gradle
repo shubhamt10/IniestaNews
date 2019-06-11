@@ -29,4 +29,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+//Image
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+//Network
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+//Times Formater
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 }

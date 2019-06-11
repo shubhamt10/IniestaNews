@@ -101,59 +101,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         Intent fragmentsActivity = new Intent(MainActivity.this,FragmentsActivity.class);
         switch (menuItem.getItemId()) {
-
+            case R.id.latest_news:
+                fragmentsActivity.putExtra("type","latest");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_entertainment:
+                fragmentsActivity.putExtra("type","entertainment");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_politics:
+                fragmentsActivity.putExtra("type","politics");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_gadgets:
+                fragmentsActivity.putExtra("type","gadgets");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_delhiNCR:
+                fragmentsActivity.putExtra("type","delhiNCR");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_sports:
+                fragmentsActivity.putExtra("type","sports");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_business:
+                fragmentsActivity.putExtra("type","business");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_health:
+                fragmentsActivity.putExtra("type","health");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_education:
+                fragmentsActivity.putExtra("type","education");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.world_news:
+                fragmentsActivity.putExtra("type","world");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.national_news:
+                fragmentsActivity.putExtra("type","national");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Iniesta News");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
+            case R.id.nav_feedback:
+                fragmentsActivity.putExtra("type","feedback");
+                startActivity(fragmentsActivity);
+                break;
+            case R.id.nav_contact_us:
+                fragmentsActivity.putExtra("type","contactUs");
+                startActivity(fragmentsActivity);
+                break;
             case R.id.nav_settings:
-
                 fragmentsActivity.putExtra("type","settings");
                 startActivity(fragmentsActivity);
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id., frag)
-//                        .add(new DashboardFragment(), "dash")
-//                        .addToBackStack("dash")
-//                        .commit();
                 break;
-//            case R.id.nav_profile:
-//                Fragment frag1 = new ProfileFragment();
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, frag1)
-//                        .add(new ProfileFragment(), "dash")
-//                        .addToBackStack("dash")
-//                        .commit();
-//                break;
-//
-//            case R.id.nav_instructions:
-//
-//                Fragment frag2 = new InstructionFragment();
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, frag2)
-//                        .add(new InstructionFragment(), "dash")
-//                        .addToBackStack("dash")
-//                        .commit();
-//                break;
-//
-//            case R.id.nav_feedback:
-//                Fragment frag3 = new FeedbackFragment();
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, frag3)
-//                        .add(new FeedbackFragment(), "dash")
-//                        .addToBackStack("dash")
-//                        .commit();
-//                break;
-//
-//            case R.id.nav_about_us:
-//
-//                Fragment frag4 = new AboutUsFragment();
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, frag4)
-//                        .add(new AboutUsFragment(), "dash")
-//                        .addToBackStack("dash")
-//                        .commit();
-//                break;
-//            case R.id.nav_logout:
-//                showPopup();
-//                break;
-
-
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
