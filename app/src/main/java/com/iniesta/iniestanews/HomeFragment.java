@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView latestRecyclerView;
     private ProgressBar latestProgressBar;
     public String latestUrl ;
+    View view;
 
     //= "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6";
 
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home,container,false);
+        view = inflater.inflate(R.layout.fragment_home,container,false);
 
         latestRecyclerView = view.findViewById(R.id.latestRecyclerView);
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
@@ -47,5 +48,23 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onResume() {
+        Toast.makeText(getContext(), "in resume", Toast.LENGTH_SHORT).show();
+        SharedPreferences sp = getActivity().getSharedPreferences("check" , Context.MODE_PRIVATE);
+        int a=sp.getInt("cj",0);
+
+        if(a==0)
+        {
+
+            view.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+        else {
+
+            view.setBackgroundColor(getResources().getColor(R.color.white));
+        }
+        super.onResume();
+    }
 
 }
+

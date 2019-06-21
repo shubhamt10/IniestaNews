@@ -102,7 +102,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             titleTextView = itemView.findViewById(R.id.title);
             descriptionTextView = itemView.findViewById(R.id.desc);
             share_button=itemView.findViewById(R.id.share);
-
+            //titleTextView.setTextColor(itemView.getResources().getColor(R.color.black));
             hListener = listener;
             itemView.setOnClickListener(this);
 

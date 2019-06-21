@@ -2,6 +2,7 @@ package com.iniesta.iniestanews;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Toolbar toolbar;
+    private NavigationView navig;
     private PagerAdapter adapter;
     DrawerLayout drawer;
 
@@ -37,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        toolbar=findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
-
+        navig=findViewById(R.id.nav_view);
         adapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setOffscreenPageLimit(5);
 
@@ -170,4 +173,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+//    @Override
+//    public void onResume() {
+//       // Toast.makeText(getContext(), "in resume", Toast.LENGTH_SHORT).show();
+//        SharedPreferences sp = getSharedPreferences("check" , Context.MODE_PRIVATE);
+//        int a=sp.getInt("cj",0);
+//
+//        if(a==0)
+//        {
+//            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+//            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+//        }
+//        else {
+//            toolbar.setBackgroundColor(getResources().getColor(R.color.primaryGray));
+//            tabLayout.setTabIconTintResource(R.color.black);
+//            tabLayout.setBackgroundColor(getResources().getColor(R.color.primaryGray));
+//            //navig.setItemBackground(getResources().getColor(R.color.primaryGray));
+//            toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+//            toolbar.setSubtitleTextColor(getResources().getColor(R.color.black));
+//            //view.setBackgroundColor(getResources().getColor(R.color.white));
+//        }
+//        super.onResume();
+//    }
 }
