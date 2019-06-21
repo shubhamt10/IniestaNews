@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -124,12 +123,10 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
                     nid = e.getString("nid");
                     imageUrl = e.getString("image");
                     heading = e.getString("heading");
-                    System.out.println(heading);
                     content1 = e.getString("content_one");
                     content2 = e.getString("content_two");
                     content3 = e.getString("content_three");
                     content4 = e.getString("content_four");
-                    System.out.println(imageUrl);
                     dateString = e.getString("date");
                     String[] dateArr = dateString.split(" ");
                     String date = dateArr[0];
@@ -137,8 +134,6 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
                     NewsItem news = new NewsItem(cid,nid,imageUrl, heading, content1,content2,content3,content4, date,shareUrl);
                     newsItems.add(news);
                 }
-
-                System.out.println(newsItems.size());
 
             }catch (Exception e){
                 e.printStackTrace();
