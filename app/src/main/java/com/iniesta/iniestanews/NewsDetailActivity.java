@@ -56,7 +56,10 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 
 
         Intent intent = getIntent();
-        mUrl = intent.getStringExtra("url");
+        mUrl = intent.getStringExtra("webUrl");
+
+//        Toast.makeText(this, mUrl, Toast.LENGTH_SHORT).show();
+
         mImg = intent.getStringExtra("img");
         mTitle = intent.getStringExtra("title");
 
@@ -153,12 +156,18 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
             if (id == R.id.share){
                 try{
 
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("text/plan");
-                    i.putExtra(Intent.EXTRA_SUBJECT, mSource);
-                    String body = mTitle + "\n" + mUrl + "\n" + "Share from the News App" + "\n";
-                    i.putExtra(Intent.EXTRA_TEXT, body);
-                    startActivity(Intent.createChooser(i, "Share with :"));
+//                    Intent i = new Intent(Intent.ACTION_SEND);
+//                    i.putExtra(Intent.EXTRA_SUBJECT, mSource);
+//                    String body = mUrl;
+//                    i.putExtra(Intent.EXTRA_TEXT, body);
+//                    startActivity(Intent.createChooser(i, "Share with :"));
+
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, mUrl);
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+
 
                 }catch (Exception e){
                     Toast.makeText(this, "Hmm.. Sorry, \nCannot be share", Toast.LENGTH_SHORT).show();
