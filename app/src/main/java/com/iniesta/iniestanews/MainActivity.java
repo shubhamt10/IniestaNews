@@ -3,6 +3,7 @@ package com.iniesta.iniestanews;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Toolbar toolbar;
+    private NavigationView navig;
     private PagerAdapter adapter;
     DrawerLayout drawer;
 
@@ -39,12 +42,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        toolbar=findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
-
+        navig=findViewById(R.id.nav_view);
         adapter = new PagerAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(6);
 
         addFragments();
 
@@ -70,15 +73,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void addFragments(){
 
         Bundle bundle1 = new Bundle();
-        bundle1.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
+        bundle1.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=1");
         Bundle bundle2 = new Bundle();
-        bundle2.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
+        bundle2.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=2");
         Bundle bundle3 = new Bundle();
         bundle3.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
         Bundle bundle4 = new Bundle();
-        bundle4.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
+        bundle4.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=7");
         Bundle bundle5 = new Bundle();
-        bundle5.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
+        bundle5.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=8");
+        Bundle bundle6 = new Bundle();
+        bundle6.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=11");
 
         HomeFragment fragment1 = new HomeFragment();
         fragment1.setArguments(bundle1);
@@ -90,12 +95,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragment4.setArguments(bundle4);
         HomeFragment fragment5 = new HomeFragment();
         fragment5.setArguments(bundle5);
+        HomeFragment fragment6 = new HomeFragment();
+        fragment6.setArguments(bundle6);
 
-        adapter.addFragment(fragment1, "Top");
-        adapter.addFragment(fragment2, "Sports");
-        adapter.addFragment(fragment3, "Business");
-        adapter.addFragment(fragment4, "Science");
-        adapter.addFragment(fragment5, "Technology");
+        adapter.addFragment(fragment1, "Latest News");
+        adapter.addFragment(fragment2, "National News");
+        adapter.addFragment(fragment3, "Sports");
+        adapter.addFragment(fragment4, "Gadgets");
+        adapter.addFragment(fragment5, "Business");
+        adapter.addFragment(fragment6, "World Cup");
 
     }
 
@@ -172,4 +180,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+//    @Override
+//    public void onResume() {
+//       // Toast.makeText(getContext(), "in resume", Toast.LENGTH_SHORT).show();
+//        SharedPreferences sp = getSharedPreferences("check" , Context.MODE_PRIVATE);
+//        int a=sp.getInt("cj",0);
+//
+//        if(a==0)
+//        {
+//            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+//            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+//        }
+//        else {
+//            toolbar.setBackgroundColor(getResources().getColor(R.color.primaryGray));
+//            tabLayout.setTabIconTintResource(R.color.black);
+//            tabLayout.setBackgroundColor(getResources().getColor(R.color.primaryGray));
+//            //navig.setItemBackground(getResources().getColor(R.color.primaryGray));
+//            toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+//            toolbar.setSubtitleTextColor(getResources().getColor(R.color.black));
+//            //view.setBackgroundColor(getResources().getColor(R.color.white));
+//        }
+//        super.onResume();
+//    }
 }
