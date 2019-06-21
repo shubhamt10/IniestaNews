@@ -1,11 +1,13 @@
 package com.iniesta.iniestanews;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +44,31 @@ public class HomeFragment extends Fragment {
         latestRecyclerView = view.findViewById(R.id.latestRecyclerView);
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
 
-        new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl);
-
+        init();
 
         return view;
+    }
+
+    public void init() {
+        if (!(AppStatus.getInstance(getContext()).isOnline())) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Network Issue");
+            builder.setMessage("Check Your Internet Connection");
+            builder.setIcon(R.drawable.png);
+            ;
+            builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    init();
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else{
+            new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl);
+        }
     }
 
 }

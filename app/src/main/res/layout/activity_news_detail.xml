@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/title"
-                        android:textColor="@color/colorTextTitle"
+                        android:textColor="@color/colorAccent"
                         android:textStyle="bold"
                         android:fontFamily="sans-serif-light"
                         android:textSize="19sp"
@@ -148,17 +148,17 @@
                         android:layout_height="wrap_content"
                         />
 
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_below="@id/title"
-                        android:layout_marginTop="10dp"
-                        android:maxLines="1"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:text="a time ago" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/time"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="20dp"-->
+                        <!--android:layout_below="@id/title"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:drawablePadding="10dp"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:ellipsize="end"-->
+                        <!--android:text="a time ago" />-->
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -176,11 +176,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <WebView
+                    <TextView
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                        android:id="@+id/webView"
+                        android:id="@+id/description"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:textSize="14dp"/>
 
 
                 </RelativeLayout>

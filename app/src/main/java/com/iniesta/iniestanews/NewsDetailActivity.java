@@ -25,13 +25,12 @@ import com.bumptech.glide.request.RequestOptions;
 public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener{
 
     private ImageView imageView;
-    private TextView appbar_title, appbar_subtitle, date, time, title;
+    private TextView title, Description, date;
     private boolean isHideToolbarView = false;
     private FrameLayout date_behavior;
-    private LinearLayout titleAppbar;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
-    private String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
+    private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +45,32 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
 
+        title = findViewById(R.id.title);
         appBarLayout = findViewById(R.id.appbar);
         appBarLayout.addOnOffsetChangedListener(this);
         date_behavior = findViewById(R.id.date_behavior);
-//        titleAppbar = findViewById(R.id.title_appbar);
         imageView = findViewById(R.id.backdrop);
-//        appbar_title = findViewById(R.id.title_on_appbar);
-//        appbar_subtitle = findViewById(R.id.subtitle_on_appbar);
-
+        Description = findViewById(R.id.description);
+        date = findViewById(R.id.date);
 
         Intent intent = getIntent();
-        mUrl = intent.getStringExtra("webUrl");
+        //mUrl = intent.getStringExtra("webUrl");
 
-//        Toast.makeText(this, mUrl, Toast.LENGTH_SHORT).show();
-
+        mUrl = intent.getStringExtra("url");
         mImg = intent.getStringExtra("img");
         mTitle = intent.getStringExtra("title");
+        mDate = intent.getStringExtra("date");
+        mContent1 = intent.getStringExtra("content1");
+        mContent2 = intent.getStringExtra("content2");
+        mContent3 = intent.getStringExtra("content3");
+        mContent4 = intent.getStringExtra("content4");
+
+        Description.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
+        title.setText(mTitle);
+        date.setText(mDate);
+
+
+//         Toast.makeText(this, mUrl, Toast.LENGTH_SHORT).show();
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.error(Utils.getRandomDrawbleColor());
