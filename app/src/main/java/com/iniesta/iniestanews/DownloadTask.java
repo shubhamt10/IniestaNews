@@ -3,13 +3,9 @@ package com.iniesta.iniestanews;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,6 +13,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -26,11 +23,9 @@ import java.util.List;
 
 public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
     private List<NewsItem> newsItems = new ArrayList<>();
-    String url;
     private Context mContext;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
-    ImageButton b1;
 
     public DownloadTask(RecyclerView recyclerView, ProgressBar progressBar, Context context) {
         mContext = context;
@@ -53,21 +48,18 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
             @Override
             public void onClick(View view, int position) {
                 NewsItem item = newsItems.get(position);
-                String webUrl = item.getUrl();
-                url=webUrl;
+                String webUrl = item.getShareUrl();
                 Toast.makeText(mContext,"Url: " + webUrl,Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext,NewsDetailActivity.class);
-                intent.putExtra("webUrl",webUrl);
-                intent.putExtra("title", item.getTitle());
-                intent.putExtra("img",  item.getUrlToImage());
-
-//                Pair<View, String> pair = Pair.create((View)imageView, ViewCompat.getTransitionName(imageView));
-//                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                        MainActivity.this,
-//                        pair
-//                );
-
+                intent.putExtra("url",webUrl);
+                intent.putExtra("title", item.getHeading());
+                intent.putExtra("img",  item.getImageUrl());
+                intent.putExtra("date",item.getDate());
+                intent.putExtra("content1",item.getContent1());
+                intent.putExtra("content2",item.getContent2());
+                intent.putExtra("content3",item.getContent3());
+                intent.putExtra("content4",item.getContent4());
                 mContext.startActivity(intent);
             }
         };
@@ -86,45 +78,72 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
         URL mainUrl;
         HttpURLConnection urlConnection;
         String result = "";
-
+        StringBuilder output = new StringBuilder();
 
 
         try {
             mainUrl = new URL(strings[0]);
             urlConnection = (HttpURLConnection) mainUrl.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+//            urlConnection.setReadTimeout(10000);
+//            urlConnection.setConnectTimeout(15000);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
             InputStreamReader reader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line = bufferedReader.readLine();
 
-            int data = reader.read();
-            while (data != -1){
-                char current = (char) data;
-                result += current;
-                data = reader.read();
+            while (line != null) {
+                output.append(line);
+                line = bufferedReader.readLine();
             }
 
-            JSONObject object = new JSONObject(result);
-            JSONArray articles = object.getJSONArray("articles");
-            int length = object.getInt("totalResults");
+            result = output.toString();
 
-            JSONObject article;
-            String title,url,urlImage,description;
-            for (int i=0;i<20 && i<length;i++) {
-                article = articles.getJSONObject(i);
-                title = article.getString("title");
-                url = article.getString("url");
-                urlImage = article.getString("urlToImage");
-                description = article.getString("description");
-                if (urlImage.equals("null")){
-                    newsItems.add(new NewsItem(title,url,"empty",description));
-                }else {
-                    newsItems.add(new NewsItem(title, url, urlImage,description));
+            String cid = "";
+            String nid = "";
+            String imageUrl = "";
+            String heading = "";
+            String content1 = "";
+            String content2 = "";
+            String content3 = "";
+            String content4 = "";
+            String dateString = "";
+            String shareUrl = "";
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject e;
+
+                int length = jsonArray.length();
+
+                for (int i=0;i<jsonArray.length();i++) {
+                    shareUrl = "http://www.iniestanews.com/news.php?cid=";
+                    e = jsonArray.getJSONObject(length-i-1);
+                    cid = e.getString("cid");
+                    nid = e.getString("nid");
+                    imageUrl = e.getString("image");
+                    heading = e.getString("heading");
+                    System.out.println(heading);
+                    content1 = e.getString("content_one");
+                    content2 = e.getString("content_two");
+                    content3 = e.getString("content_three");
+                    content4 = e.getString("content_four");
+                    System.out.println(imageUrl);
+                    dateString = e.getString("date");
+                    String[] dateArr = dateString.split(" ");
+                    String date = dateArr[0];
+                    shareUrl += cid + "&nid=" + nid;
+                    NewsItem news = new NewsItem(cid,nid,imageUrl, heading, content1,content2,content3,content4, date,shareUrl);
+                    newsItems.add(news);
                 }
+
+                System.out.println(newsItems.size());
+
+            }catch (Exception e){
+                e.printStackTrace();
             }
+            return newsItems;
 
         }catch (Exception e){
             System.out.println(e.getMessage());
