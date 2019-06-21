@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:layout_below="@+id/desc"
+                android:layout_below="@id/title"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:src="@drawable/share"
@@ -120,16 +120,16 @@
                 android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="16dp"
-                android:text="Desc"
-                android:textSize="10sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/desc"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/title"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:text="Desc"-->
+                <!--android:textSize="10sp" />-->
 
 
         </RelativeLayout>
