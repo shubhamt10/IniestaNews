@@ -48,7 +48,7 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
             public void onClick(View view, int position) {
                 NewsItem item = newsItems.get(position);
                 String webUrl = item.getShareUrl();
-                Toast.makeText(mContext,"Url: " + webUrl,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext,"Url: " + webUrl,Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext,NewsDetailActivity.class);
                 intent.putExtra("url",webUrl);

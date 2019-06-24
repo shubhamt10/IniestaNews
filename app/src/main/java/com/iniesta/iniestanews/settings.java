@@ -51,7 +51,7 @@ public class settings extends Fragment {
                {
                    editor.putInt("cj",1).apply();
 
-                   Toast.makeText(getActivity(), "hello", Toast.LENGTH_SHORT).show();
+//                   Toast.makeText(getActivity(), "hello", Toast.LENGTH_SHORT).show();
                    v.setBackgroundColor(getResources().getColor(R.color.white));
 
 
