@@ -1,11 +1,15 @@
 package com.iniesta.iniestanews;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 public class FragmentsActivity extends AppCompatActivity {
+
+    //ActionBar mActionbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +18,7 @@ public class FragmentsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.fragments_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String type = getIntent().getStringExtra("type");
         Bundle bundle1 = new Bundle();
@@ -102,6 +107,16 @@ public class FragmentsActivity extends AppCompatActivity {
                 .replace(R.id.fragments_container,fragment)
                 .commit();
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                FragmentsActivity.super.onBackPressed();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
