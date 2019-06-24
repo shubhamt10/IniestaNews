@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
 
@@ -22,9 +21,6 @@ public class HomeFragment extends Fragment {
     public String latestUrl ;
     View view;
 
-    //= "https://newsapi.org/v2/top-headlines?country=in&pageSize=20&apiKey=598ae4e3c5c940ff991d7f44b9f3dde6";
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +28,6 @@ public class HomeFragment extends Fragment {
             latestUrl = getArguments().get("url").toString();
         }catch (NullPointerException e){
             e.getMessage();
-            Toast.makeText(getContext(),latestUrl,Toast.LENGTH_LONG).show();
-
         }
     }
 
@@ -51,7 +45,6 @@ public class HomeFragment extends Fragment {
     }
     @Override
     public void onResume() {
-        Toast.makeText(getContext(), "in resume", Toast.LENGTH_SHORT).show();
         SharedPreferences sp = getActivity().getSharedPreferences("check" , Context.MODE_PRIVATE);
         int a=sp.getInt("cj",0);
 
@@ -74,7 +67,6 @@ public class HomeFragment extends Fragment {
             builder.setTitle("Network Issue");
             builder.setMessage("Check Your Internet Connection");
             builder.setIcon(R.drawable.png);
-            ;
             builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

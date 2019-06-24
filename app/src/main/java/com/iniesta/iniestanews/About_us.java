@@ -26,11 +26,6 @@ public class About_us extends Fragment {
 
     }
 
-    //https://m.facebook.com/iniestawebtech
-    //https://www.linkedin.com/in/iniesta-webtech-solution-85313317b/
-    //https://twitter.com/IniestaWebtech?s=08
-    //https://www.instagram.com/iniestawebtech/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
