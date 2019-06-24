@@ -13,8 +13,7 @@
             android:title="Politics" />
             <item android:id="@+id/nav_gadgets"
             android:title="Gadgets" />
-            <item android:id="@+id/nav_delhiNCR"
-            android:title="Delhi-NCR" />
+
             <item android:id="@+id/nav_sports"
             android:title="Sports" />
             <item android:id="@+id/nav_business"
@@ -41,7 +40,7 @@
     <item android:title="Personalize">
         <menu>
             <item android:id="@+id/nav_settings"
-                android:title="Settings"/>
+                android:title="Change Theme"/>
         </menu>
     </item>
 

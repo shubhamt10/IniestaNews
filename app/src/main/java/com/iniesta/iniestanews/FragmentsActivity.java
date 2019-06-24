@@ -43,12 +43,12 @@ public class FragmentsActivity extends AppCompatActivity {
                 fragment = new HomeFragment();
                 fragment.setArguments(bundle1);
                 break;
-            case "delhiNCR":
-                getSupportActionBar().setTitle("Delhi-NCR");
-                bundle1.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
-                fragment = new HomeFragment();
-                fragment.setArguments(bundle1);
-                break;
+//            case "delhiNCR":
+//                getSupportActionBar().setTitle("Delhi-NCR");
+//                bundle1.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");
+//                fragment = new HomeFragment();
+//                fragment.setArguments(bundle1);
+//                break;
             case "sports":
                 getSupportActionBar().setTitle("Sports");
                 bundle1.putString("url", "http://www.iniestanews.com/api/ineisatapi.php?cid=4");

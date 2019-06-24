@@ -129,10 +129,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentsActivity.putExtra("type","gadgets");
                 startActivity(fragmentsActivity);
                 break;
-            case R.id.nav_delhiNCR:
-                fragmentsActivity.putExtra("type","delhiNCR");
-                startActivity(fragmentsActivity);
-                break;
+//            case R.id.nav_delhiNCR:
+//                fragmentsActivity.putExtra("type","delhiNCR");
+//                startActivity(fragmentsActivity);
+//                break;
             case R.id.nav_sports:
                 fragmentsActivity.putExtra("type","sports");
                 startActivity(fragmentsActivity);
