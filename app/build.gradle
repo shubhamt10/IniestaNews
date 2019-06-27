@@ -28,11 +28,22 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'
     testImplementation 'junit:junit:4.12'
+
+
+
+//    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation ('com.google.firebase:firebase-core:16.0.4') {
+        exclude group: "com.android.support"
+    }
+    implementation 'com.android.support:support-media-compat:28.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 //Image
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //firebase
+
+   implementation 'com.google.firebase:firebase-messaging:10.2.1'
 
 //Network
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -41,3 +52,4 @@ dependencies {
 //Times Formater
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 }
+apply plugin: 'com.google.gms.google-services'

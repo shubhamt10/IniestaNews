@@ -24,15 +24,16 @@
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:layout_height="210dp"
+                android:scaleType="fitXY"
                 android:transitionName="img"
+
                 tools:ignore="UnusedAttribute" />
 
             <ImageView
                 android:id="@+id/shadow_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/img"
                 app:srcCompat="@drawable/bottom_shadow" />
 
