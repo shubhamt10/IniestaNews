@@ -2,6 +2,7 @@ package com.iniesta.iniestanews;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,9 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         mContent2 = intent.getStringExtra("content2");
         mContent3 = intent.getStringExtra("content3");
         mContent4 = intent.getStringExtra("content4");
-        Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+        if(Build.VERSION.SDK_INT > 26) {
+            Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+        }
         Description.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
         title.setText(mTitle);
         date.setText(mDate);

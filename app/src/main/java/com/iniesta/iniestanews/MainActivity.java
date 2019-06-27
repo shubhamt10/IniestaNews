@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final String appPackageName = getApplicationContext().getPackageName();
         strAppLink = "https://play.google.com/store/apps/details?id=" + appPackageName;
 
-
-
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

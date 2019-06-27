@@ -199,7 +199,6 @@
     <FrameLayout
         android:id="@+id/date_behavior"
         app:layout_anchor="@+id/appbar"
-        app:behavior_autoHide="true"
         android:adjustViewBounds="true"
         app:layout_anchorGravity="right|end|bottom"
         android:clickable="false"
@@ -210,7 +209,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="410dp"
         android:layout_height="wrap_content"
         tools:ignore="UnusedAttribute">
         <ImageView
