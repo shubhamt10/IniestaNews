@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navig;
     private PagerAdapter adapter;
     DrawerLayout drawer;
+    String strAppLink ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager.setOffscreenPageLimit(6);
 
         addFragments();
+        strAppLink=" ";
+        final String appPackageName = getApplicationContext().getPackageName();
+        strAppLink = "https://play.google.com/store/apps/details?id=" + appPackageName;
+
+
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -160,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Iniesta News");
+                sendIntent.putExtra(Intent.EXTRA_TEXT,strAppLink);
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
                 break;

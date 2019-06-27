@@ -7,6 +7,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,7 +65,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         mContent2 = intent.getStringExtra("content2");
         mContent3 = intent.getStringExtra("content3");
         mContent4 = intent.getStringExtra("content4");
-
+        Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         Description.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
         title.setText(mTitle);
         date.setText(mDate);
