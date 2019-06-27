@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_alignBottom="@id/img"
-                android:src="@drawable/bottom_shadow" />
+                app:srcCompat="@drawable/bottom_shadow" />
 
             <!--<ProgressBar-->
             <!--android:id="@+id/prograss_load_photo"-->
@@ -77,7 +77,7 @@
                     android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:src="@drawable/ic_date" />
+                    app:srcCompat="@drawable/ic_date" />
 
                 <TextView
                     android:id="@+id/publishedAt"
@@ -99,7 +99,7 @@
                 android:layout_below="@id/title"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:src="@drawable/share"
+                app:srcCompat="@drawable/share"
                 android:id="@+id/share"
                 android:onClick="sa"
                 android:layout_marginBottom="2dp"
