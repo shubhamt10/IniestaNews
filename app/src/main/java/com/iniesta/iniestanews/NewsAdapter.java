@@ -42,7 +42,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
         NewsViewHolder holder = new NewsViewHolder(view, mListener);
-
         return holder;
     }
 
