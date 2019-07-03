@@ -1,8 +1,10 @@
 package com.iniesta.iniestanews;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -13,6 +15,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +24,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -29,8 +33,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.iniesta.iniestanews.services.Configuration;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Toolbar toolbar;
@@ -71,6 +80,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        Toast.makeText(this, FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // checking for type intent filter
+                if (intent.getAction().equals("registrationComplete")) {
+                    // fcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    FirebaseMessaging.getInstance().subscribeToTopic("global");
+                }
+            }
+        };
 
     }
 
@@ -133,10 +157,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentsActivity.putExtra("type","gadgets");
                 startActivity(fragmentsActivity);
                 break;
-//            case R.id.nav_delhiNCR:
-//                fragmentsActivity.putExtra("type","delhiNCR");
-//                startActivity(fragmentsActivity);
-//                break;
             case R.id.nav_sports:
                 fragmentsActivity.putExtra("type","sports");
                 startActivity(fragmentsActivity);
@@ -207,4 +227,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        }
 //        super.onResume();
 //    }
+
+
+    @Override
+    protected void onRestart() {
+        Toast.makeText(this, FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+        Log.i("hello", FirebaseInstanceId.getInstance().getToken());
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause() {
+        Toast.makeText(this, FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        Log.i("hello", FirebaseInstanceId.getInstance().getToken());
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        // register GCM registration complete receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Configuration.REGISTRATION_COMPLETE));
+        // register new push postUrlFromNotification receiver
+        // by doing this, the activity will be notified each time a new postUrlFromNotification arrives
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Configuration.PUSH_NOTIFICATION));
+        super.onResume();
+    }
 }
