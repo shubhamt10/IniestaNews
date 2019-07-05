@@ -13,11 +13,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.Wave;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class HomeFragment extends Fragment {
 
     private RecyclerView latestRecyclerView;
     private ProgressBar latestProgressBar;
+    private AdView mAdView;
     public String latestUrl ;
     View view;
 
@@ -38,8 +47,56 @@ public class HomeFragment extends Fragment {
 
         latestRecyclerView = view.findViewById(R.id.latestRecyclerView);
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
+        Sprite wave = new Wave();
+        latestProgressBar.setIndeterminateDrawable(wave);
 
         init();
+
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+//                .addTestDevice("67219F41FBCD43C8B4236BC141E830D9")
+//                .addTestDevice("8F3D79A8C87E3791214A712C9FBAE215").build();
+        mAdView.loadAd(adRequest);
+
+//        mAdView.setAdListener(new AdListener(){
+//            @Override
+//            public void onAdClosed() {
+//                super.onAdClosed();
+//            }
+//
+//            @Override
+//            public void onAdFailedToLoad(int i) {
+//                System.out.println("Ad failed to load");
+//                AdRequest adRequest = new AdRequest.Builder().build();
+//                mAdView.loadAd(adRequest);
+//                super.onAdFailedToLoad(i);
+//            }
+//
+//            @Override
+//            public void onAdLeftApplication() {
+//                super.onAdLeftApplication();
+//            }
+//
+//            @Override
+//            public void onAdOpened() {
+//                super.onAdOpened();
+//            }
+//
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//            }
+//
+//            @Override
+//            public void onAdClicked() {
+//                super.onAdClicked();
+//            }
+//
+//            @Override
+//            public void onAdImpression() {
+//                super.onAdImpression();
+//            }
+//        });
 
         return view;
     }
@@ -83,3 +140,17 @@ public class HomeFragment extends Fragment {
 
 }
 
+//play store
+//ca-app-pub-5589355018838308~7806932209
+//ca-app-pub-5589355018838308/7745963274
+
+//ca-app-pub-5589355018838308~9779092060
+//ca-app-pub-5589355018838308/4655344622
+
+//test
+//ca-app-pub-3940256099942544~3347511713
+//ca-app-pub-3940256099942544/6300978111
+
+//    ProgressBar progressBar = view.findViewById(R.id.spin_kit);
+//    Sprite wave = new Wave();
+//progressBar.setIndeterminateDrawable(wave);

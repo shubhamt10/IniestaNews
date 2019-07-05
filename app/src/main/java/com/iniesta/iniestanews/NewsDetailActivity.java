@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener{
 
@@ -33,11 +35,17 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4 ;
+    private AdView mAdViewDetails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+
+        mAdViewDetails = findViewById(R.id.adViewDetails);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdViewDetails.loadAd(adRequest);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -183,7 +191,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 
 
                 }catch (Exception e){
-                    Toast.makeText(this, "Hmm.. Sorry, \nCannot be share", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Cannot be shared", Toast.LENGTH_SHORT).show();
                 }
             }
 

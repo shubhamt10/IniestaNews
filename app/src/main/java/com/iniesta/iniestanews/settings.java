@@ -14,7 +14,8 @@ import android.widget.Toast;
 
 public class settings extends Fragment {
 
-    Switch b1;SharedPreferences  sp;Switch notify;
+    Switch b1;SharedPreferences  sp;
+//    Switch notify;
     SharedPreferences.Editor editor ;
     CardView c1;
     View v;
@@ -28,12 +29,12 @@ public class settings extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-         sp = getActivity().getSharedPreferences("check" ,Context.MODE_PRIVATE);
-         editor=sp.edit();
-         v = inflater.inflate(R.layout.fragment_settings, container, false);
-        c1=v.findViewById(R.id.card1);
+        sp = getActivity().getSharedPreferences("check" ,Context.MODE_PRIVATE);
+        editor = sp.edit();
+        v = inflater.inflate(R.layout.fragment_settings, container, false);
+        c1 = v.findViewById(R.id.card1);
         b1 = v.findViewById(R.id.button);
-        notify=v.findViewById(R.id.button2);
+//        notify = v.findViewById(R.id.button2);
         if(sp.getInt("cj",0)==1)
         {
             b1.setChecked(true);
@@ -70,26 +71,26 @@ public class settings extends Fragment {
             }
        });
 
-        notify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
-                    editor.putInt("notify",1).apply();
 
-//                   Toast.makeText(getActivity(), "hello", Toast.LENGTH_SHORT).show();
-
-
-                }
-                else
-                {
-
-                    editor.putInt("notify",0).apply();
-                }
-
-            }
-        });
-
+//        notify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked)
+//                {
+//                    editor.putInt("notify",1).apply();
+//
+////                   Toast.makeText(getActivity(), "hello", Toast.LENGTH_SHORT).show();
+//
+//
+//                }
+//                else
+//                {
+//
+//                    editor.putInt("notify",0).apply();
+//                }
+//
+//            }
+//        });
 
         return v;
     }
