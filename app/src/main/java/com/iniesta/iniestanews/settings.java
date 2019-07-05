@@ -44,7 +44,7 @@ public class settings extends Fragment {
         else
         {
             v.setBackgroundColor(getResources().getColor(R.color.black));
-            c1.setCardBackgroundColor(getResources().getColor(R.color.black));
+           // c1.setCardBackgroundColor(getResources().getColor(R.color.black));
 
         }
 
@@ -64,7 +64,7 @@ public class settings extends Fragment {
                else
                {
                    v.setBackgroundColor(getResources().getColor(R.color.black));
-                   c1.setCardBackgroundColor(getResources().getColor(R.color.black));
+                  // c1.setCardBackgroundColor(getResources().getColor(R.color.black));
                    editor.putInt("cj",0).apply();
                }
 
