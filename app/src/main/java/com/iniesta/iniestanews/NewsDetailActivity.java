@@ -81,17 +81,23 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         title.setText(mTitle);
         date.setText(mDate);
 
+        if(mContent4==null)
+        {
+            new SingleDownloadTask(this,imageView,Description,date,title).execute("http://www.iniestanews.com/api/singlenewsapi.php?nid=931");
+        }else {
+
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.error(Utils.getRandomDrawbleColor());
+
+            Glide.with(this)
+                    .load(mImg)
+                    .apply(requestOptions)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(imageView);
+
+        }
 
 //         Toast.makeText(this, mUrl, Toast.LENGTH_SHORT).show();
-
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.error(Utils.getRandomDrawbleColor());
-
-        Glide.with(this)
-                .load(mImg)
-                .apply(requestOptions)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(imageView);
 
 //        appbar_title.setText(mSource);
 //        appbar_subtitle.setText(mUrl);
