@@ -25,11 +25,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name=".splash_activity" />
+        <activity android:name=".NewsDetailActivity" />
         <activity android:name=".FragmentsActivity" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".NewsDetailActivity"
+            android:name=".splash_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

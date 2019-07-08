@@ -34,7 +34,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
     private FrameLayout date_behavior;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
-    private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4 ;
+    private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4, cid, nid ;
     private AdView mAdViewDetails;
 
 
@@ -74,6 +74,8 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         mContent2 = intent.getStringExtra("content2");
         mContent3 = intent.getStringExtra("content3");
         mContent4 = intent.getStringExtra("content4");
+        nid = intent.getStringExtra("nid");
+        cid = intent.getStringExtra("cid");
         if(Build.VERSION.SDK_INT > 26) {
             Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
@@ -81,9 +83,11 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         title.setText(mTitle);
         date.setText(mDate);
 
-        if(mContent4==null)
+        if(nid!=null)
         {
-            new SingleDownloadTask(this,imageView,Description,date,title).execute("http://www.iniestanews.com/api/singlenewsapi.php?nid=931");
+            String url = "http://www.iniestanews.com/api/singlenewsapi.php?nid="+nid;
+            mUrl = "http://www.iniestanews.com/news.php?cid="+cid+"&nid="+nid;
+            new SingleDownloadTask(this,imageView,Description,date,title).execute(url);
         }else {
 
             RequestOptions requestOptions = new RequestOptions();

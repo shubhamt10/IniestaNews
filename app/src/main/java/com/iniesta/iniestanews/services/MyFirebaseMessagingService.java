@@ -24,6 +24,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String IMAGE = "image";
     private static final String ACTION = "action";
     private static final String DATA = "data";
+    private static final String CID = "cid";
+    private static final String NID = "nid";
+    private static final String DATE = "date";
     private static final String ACTION_DESTINATION = "action_destination";
 
     @Override
@@ -66,6 +69,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String contentthree = data.get(CONTENTTHREE);
         String contentfour = data.get(CONTENTFOUR);
         String action = data.get(ACTION);
+        String nid = data.get(NID);
+        String cid = data.get(CID);
+        String date = data.get(DATE);
+
         String actionDestination = data.get(ACTION_DESTINATION);
         NotificationVO notificationVO = new NotificationVO();
         notificationVO.setTitle(title);
@@ -81,6 +88,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         resultIntent.putExtra("content2",contenttwo);
         resultIntent.putExtra("content3",contentthree);
         resultIntent.putExtra("content4",contentfour);
+        resultIntent.putExtra("nid",nid);
+        resultIntent.putExtra("cid",cid);
+        resultIntent.putExtra("date",date);
 
         NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
         notificationUtils.displayNotification(notificationVO, resultIntent);
