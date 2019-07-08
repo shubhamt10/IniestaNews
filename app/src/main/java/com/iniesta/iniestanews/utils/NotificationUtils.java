@@ -62,6 +62,7 @@ public class NotificationUtils {
             Bitmap iconBitMap = null;
             if (iconUrl != null) {
                 iconBitMap = getBitmapFromURL(iconUrl);
+                System.out.println("Icon bitmap not null");
             }
             final int icon = R.mipmap.ic_launcher;
 
