@@ -17,12 +17,16 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.github.ybq.android.spinkit.style.Wave;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -85,9 +89,14 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 
         if(nid!=null)
         {
+            ProgressBar newsProgressBar;
+            newsProgressBar = findViewById(R.id.newsProgressBar);
+            Sprite threeBounce = new ThreeBounce();
+            newsProgressBar.setIndeterminateDrawable(threeBounce);
+
             String url = "http://www.iniestanews.com/api/singlenewsapi.php?nid="+nid;
             mUrl = "http://www.iniestanews.com/news.php?cid="+cid+"&nid="+nid;
-            new SingleDownloadTask(this,imageView,Description,date,title).execute(url);
+            new SingleDownloadTask(this,newsProgressBar, imageView,Description,date,title).execute(url);
         }else {
 
             RequestOptions requestOptions = new RequestOptions();

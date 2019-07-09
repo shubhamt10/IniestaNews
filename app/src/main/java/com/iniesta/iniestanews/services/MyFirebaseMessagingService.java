@@ -17,16 +17,10 @@ import java.util.Map;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgingService";
     private static final String TITLE = "heading";
-    private static final String CONTENTONE = "contentone";
-    private static final String CONTENTTWO = "contenttwo";
-    private static final String CONTENTTHREE = "contentthree";
-    private static final String CONTENTFOUR = "contentfour";
     private static final String IMAGE = "image";
     private static final String ACTION = "action";
-    private static final String DATA = "data";
     private static final String CID = "cid";
     private static final String NID = "nid";
-    private static final String DATE = "date";
     private static final String ACTION_DESTINATION = "action_destination";
 
     @Override
@@ -63,15 +57,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void handleData(Map<String, String> data) {
         String title = data.get(TITLE);
         String iconUrl = data.get(IMAGE);
-        System.out.println(iconUrl);
-        String contentone = data.get(CONTENTONE);
-        String contenttwo = data.get(CONTENTTWO);
-        String contentthree = data.get(CONTENTTHREE);
-        String contentfour = data.get(CONTENTFOUR);
-        String action = data.get(ACTION);
         String nid = data.get(NID);
+        String action = data.get(ACTION);
         String cid = data.get(CID);
-        String date = data.get(DATE);
 
         String actionDestination = data.get(ACTION_DESTINATION);
         NotificationVO notificationVO = new NotificationVO();
@@ -84,13 +72,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Intent resultIntent = new Intent(getApplicationContext(), NewsDetailActivity.class);
         resultIntent.putExtra("title", title);
         resultIntent.putExtra("img",iconUrl);
-        resultIntent.putExtra("content1" ,contentone);
-        resultIntent.putExtra("content2",contenttwo);
-        resultIntent.putExtra("content3",contentthree);
-        resultIntent.putExtra("content4",contentfour);
         resultIntent.putExtra("nid",nid);
         resultIntent.putExtra("cid",cid);
-        resultIntent.putExtra("date",date);
 
         NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
         notificationUtils.displayNotification(notificationVO, resultIntent);
