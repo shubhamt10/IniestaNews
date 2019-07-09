@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, "ca-app-pub-5589355018838308~7806932209");
+        MobileAds.initialize(this, "ca-app-pub-5589355018838308~9779092060");
 
 
         toolbar=findViewById(R.id.toolbar);

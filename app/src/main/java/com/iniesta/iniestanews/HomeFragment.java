@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
 
         mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+
 //                .addTestDevice("67219F41FBCD43C8B4236BC141E830D9")
 //                .addTestDevice("8F3D79A8C87E3791214A712C9FBAE215").build();
         mAdView.loadAd(adRequest);
