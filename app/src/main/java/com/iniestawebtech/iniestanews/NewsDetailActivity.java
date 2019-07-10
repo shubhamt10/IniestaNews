@@ -1,7 +1,6 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,11 +11,8 @@ import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,20 +22,19 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
-import com.github.ybq.android.spinkit.style.Wave;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener{
 
     private ImageView imageView;
-    private TextView title, Description, date;
+    private TextView title, Description,desc2, date;
     private boolean isHideToolbarView = false;
     private FrameLayout date_behavior;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4, cid, nid ;
-    private AdView mAdViewDetails;
+    private AdView mAdViewDetails,mAdViewLarge;
 
 
     @Override
@@ -48,8 +43,12 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         setContentView(R.layout.activity_news_detail);
 
         mAdViewDetails = findViewById(R.id.adViewDetails);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("CB16DA826794B43D622CE543526D0165").build();
         mAdViewDetails.loadAd(adRequest);
+
+        mAdViewLarge = findViewById(R.id.adViewLarge);
+        AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("CB16DA826794B43D622CE543526D0165").build();
+        mAdViewLarge.loadAd(adRequest2);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +64,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         date_behavior = findViewById(R.id.date_behavior);
         imageView = findViewById(R.id.backdrop);
         Description = findViewById(R.id.description);
+        desc2 = findViewById(R.id.description2);
         date = findViewById(R.id.date);
 
         Intent intent = getIntent();
@@ -83,7 +83,8 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         if(Build.VERSION.SDK_INT > 26) {
             Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
-        Description.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
+        Description.setText(mContent1+"\n\n"+mContent2+"\n");
+        desc2.setText(mContent3+"\n\n"+mContent4+"\n");
         title.setText(mTitle);
         date.setText(mDate);
 
@@ -96,7 +97,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 
             String url = "http://www.iniestanews.com/api/singlenewsapi.php?nid="+nid;
             mUrl = "http://www.iniestanews.com/news.php?cid="+cid+"&nid="+nid;
-            new SingleDownloadTask(this,newsProgressBar, imageView,Description,date,title).execute(url);
+            new SingleDownloadTask(this,newsProgressBar, imageView,Description,desc2,date,title).execute(url);
         }else {
 
             RequestOptions requestOptions = new RequestOptions();

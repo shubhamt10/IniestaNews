@@ -41,6 +41,44 @@
             }
           ]
         }
+      },
+      "admob_app_id": "ca-app-pub-5589355018838308~7806932209"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754894656539:android:15613218e19fd799",
+        "android_client_info": {
+          "package_name": "com.iniestawebtech.iniestanews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754894656539-k5ov312k2arpcjtuhrmt7154gggc0ero.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iniestawebtech.iniestanews",
+            "certificate_hash": "c4fb19be2ae5b5168852c7e4f966fdeca1f2ec9d"
+          }
+        },
+        {
+          "client_id": "754894656539-6g2qf2ls5m5fvb5r5v17lomtq0kmhtd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxo32cPNQjPnu9jx8llY4u7D1ayheuKIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754894656539-6g2qf2ls5m5fvb5r5v17lomtq0kmhtd1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
       }
     }
   ],

@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews.services;
+package com.iniestawebtech.iniestanews.services;
 
 
 public class Configuration {

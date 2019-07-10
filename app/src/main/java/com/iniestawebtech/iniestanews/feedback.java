@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

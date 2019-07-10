@@ -1,11 +1,7 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.os.AsyncTask;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,31 +10,28 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
     NewsItem newsItem;
     private Context mContext;
     private ProgressBar mProgressBar;
     private ImageView image;
-    private TextView desc,date,title;
+    private TextView desc,desc2,date,title;
 
-    public SingleDownloadTask( Context context,ProgressBar progressBar, ImageView image, TextView desc , TextView date , TextView title) {
+    public SingleDownloadTask( Context context,ProgressBar progressBar, ImageView image, TextView desc ,TextView desc2, TextView date , TextView title) {
         mContext = context;
         mProgressBar = progressBar;
         this.image = image;
         this.desc = desc;
         this.title = title;
+        this.desc2 = desc2;
         this.date = date;
     }
 
@@ -46,6 +39,7 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
     protected void onPreExecute() {
         mProgressBar.setVisibility(View.VISIBLE);
         desc.setVisibility(View.INVISIBLE);
+        desc2.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
     }
 
@@ -54,6 +48,7 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
 
         mProgressBar.setVisibility(View.INVISIBLE);
         desc.setVisibility(View.VISIBLE);
+        desc2.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
         String mContent1,mContent2,mContent3,mContent4;
         mContent1 = newsItem.getContent1();
@@ -73,7 +68,8 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
                 .into(image);
 
 
-        desc.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
+        desc.setText(mContent1+"\n\n"+mContent2+"\n");
+        desc2.setText(mContent3+"\n\n"+mContent4+"\n");
         title.setText(mTitle);
         date.setText(mDate);
     }
