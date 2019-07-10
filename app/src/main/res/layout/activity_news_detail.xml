@@ -22,7 +22,6 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
@@ -183,9 +182,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:padding="6dp"/>
 
+                    <com.google.android.gms.ads.AdView
+                        android:id="@+id/adViewLarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_below="@id/description"
+                        ads:adSize="LARGE_BANNER"
+                        ads:adUnitId="ca-app-pub-5589355018838308/4013406285">
+                    </com.google.android.gms.ads.AdView>
+
+                    <TextView
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:id="@+id/description2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/adViewLarge"
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"
+                        android:padding="6dp"/>
 
                 </RelativeLayout>
 
@@ -234,6 +252,7 @@
             android:id="@+id/adViewDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-5589355018838308/7745963274">

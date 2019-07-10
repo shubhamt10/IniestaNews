@@ -33,13 +33,13 @@ import com.google.android.gms.ads.AdView;
 public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener{
 
     private ImageView imageView;
-    private TextView title, Description, date;
+    private TextView title, Description, date,description2;
     private boolean isHideToolbarView = false;
     private FrameLayout date_behavior;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4, cid, nid ;
-    private AdView mAdViewDetails;
+    private AdView mAdViewDetails,mAdViewLarge;
 
 
     @Override
@@ -48,8 +48,12 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         setContentView(R.layout.activity_news_detail);
 
         mAdViewDetails = findViewById(R.id.adViewDetails);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("8F3D79A8C87E3791214A712C9FBAE215").build();
         mAdViewDetails.loadAd(adRequest);
+
+        mAdViewLarge = findViewById(R.id.adViewLarge);
+        AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("8F3D79A8C87E3791214A712C9FBAE215").build();
+        mAdViewLarge.loadAd(adRequest2);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +69,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         date_behavior = findViewById(R.id.date_behavior);
         imageView = findViewById(R.id.backdrop);
         Description = findViewById(R.id.description);
+        description2 = findViewById(R.id.description2);
         date = findViewById(R.id.date);
 
         Intent intent = getIntent();
@@ -83,7 +88,8 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         if(Build.VERSION.SDK_INT > 26) {
             Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
-        Description.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
+        Description.setText(mContent1+"\n\n"+mContent2+"\n");
+        description2.setText(mContent3+"\n\n"+mContent4+"\n");
         title.setText(mTitle);
         date.setText(mDate);
 
@@ -96,7 +102,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 
             String url = "http://www.iniestanews.com/api/singlenewsapi.php?nid="+nid;
             mUrl = "http://www.iniestanews.com/news.php?cid="+cid+"&nid="+nid;
-            new SingleDownloadTask(this,newsProgressBar, imageView,Description,date,title).execute(url);
+            new SingleDownloadTask(this,newsProgressBar, imageView,Description,description2,date,title).execute(url);
         }else {
 
             RequestOptions requestOptions = new RequestOptions();

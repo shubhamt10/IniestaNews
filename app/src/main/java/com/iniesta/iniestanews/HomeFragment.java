@@ -140,17 +140,11 @@ public class HomeFragment extends Fragment {
 
 }
 
-//play store
-//ca-app-pub-5589355018838308~7806932209
-//ca-app-pub-5589355018838308/7745963274
-
+//Currently using
 //ca-app-pub-5589355018838308~9779092060
-//ca-app-pub-5589355018838308/4655344622
+//ca-app-pub-5589355018838308/4655344622 small
+//ca-app-pub-5589355018838308/4013406285 large
 
 //test
 //ca-app-pub-3940256099942544~3347511713
 //ca-app-pub-3940256099942544/6300978111
-
-//    ProgressBar progressBar = view.findViewById(R.id.spin_kit);
-//    Sprite wave = new Wave();
-//progressBar.setIndeterminateDrawable(wave);

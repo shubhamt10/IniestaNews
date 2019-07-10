@@ -31,13 +31,14 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
     private Context mContext;
     private ProgressBar mProgressBar;
     private ImageView image;
-    private TextView desc,date,title;
+    private TextView desc,desc2,date,title;
 
-    public SingleDownloadTask( Context context,ProgressBar progressBar, ImageView image, TextView desc , TextView date , TextView title) {
+    public SingleDownloadTask( Context context,ProgressBar progressBar, ImageView image, TextView desc ,TextView desc2, TextView date , TextView title) {
         mContext = context;
         mProgressBar = progressBar;
         this.image = image;
         this.desc = desc;
+        this.desc2 = desc2;
         this.title = title;
         this.date = date;
     }
@@ -46,6 +47,7 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
     protected void onPreExecute() {
         mProgressBar.setVisibility(View.VISIBLE);
         desc.setVisibility(View.INVISIBLE);
+        desc2.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
     }
 
@@ -54,6 +56,7 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
 
         mProgressBar.setVisibility(View.INVISIBLE);
         desc.setVisibility(View.VISIBLE);
+        desc2.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
         String mContent1,mContent2,mContent3,mContent4;
         mContent1 = newsItem.getContent1();
@@ -73,7 +76,8 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
                 .into(image);
 
 
-        desc.setText(mContent1+"\n\n"+mContent2+"\n\n"+mContent3+"\n\n"+mContent4+"\n");
+        desc.setText(mContent1+"\n\n"+mContent2+"\n");
+        desc2.setText(mContent3+"\n\n"+mContent4+"\n");
         title.setText(mTitle);
         date.setText(mDate);
     }
