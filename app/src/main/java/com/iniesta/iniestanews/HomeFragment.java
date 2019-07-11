@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,7 +29,10 @@ public class HomeFragment extends Fragment {
     private ProgressBar latestProgressBar;
     private AdView mAdView;
     public String latestUrl ;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private DownloadTask downloadTask,mdownloadtask;
     View view;
+    int a=0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,10 +51,41 @@ public class HomeFragment extends Fragment {
 
         latestRecyclerView = view.findViewById(R.id.latestRecyclerView);
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
+        swipeRefreshLayout = view.findViewById(R.id.swipeContainer);
         Sprite wave = new Wave();
         latestProgressBar.setIndeterminateDrawable(wave);
 
+
+
         init();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                //init();
+                if(a%2==0)
+                {
+                    downloadTask.clearAll(latestRecyclerView);
+                    mdownloadtask = new DownloadTask(latestRecyclerView,latestProgressBar,getContext());
+                    mdownloadtask.execute(latestUrl);
+
+                }
+                else
+                {
+                    mdownloadtask.clearAll(latestRecyclerView);
+                    downloadTask = new DownloadTask(latestRecyclerView,latestProgressBar,getContext());
+                    downloadTask.execute(latestUrl);
+                }
+                swipeRefreshLayout.setRefreshing(false);
+                a++;
+            }
+        });
+
+       swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -134,7 +169,8 @@ public class HomeFragment extends Fragment {
             AlertDialog dialog = builder.create();
             dialog.show();
         } else{
-            new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl);
+            downloadTask = new DownloadTask(latestRecyclerView,latestProgressBar,getContext());
+            downloadTask.execute(latestUrl);
         }
     }
 

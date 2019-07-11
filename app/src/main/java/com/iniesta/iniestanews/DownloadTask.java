@@ -25,12 +25,20 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
     private Context mContext;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
+    RecyclerView.LayoutManager manager;
+    NewsAdapter adapter;
 
     public DownloadTask(RecyclerView recyclerView, ProgressBar progressBar, Context context) {
         mContext = context;
         mRecyclerView = recyclerView;
         mProgressBar = progressBar;
+    }
 
+    public void clearAll(RecyclerView recyclerView)
+    {
+        mRecyclerView = recyclerView;
+        newsItems.clear();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -64,8 +72,8 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
         };
 
 
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(mContext);
-        NewsAdapter adapter = new NewsAdapter(newsItems,mContext,listener);
+        manager = new LinearLayoutManager(mContext);
+        adapter = new NewsAdapter(newsItems,mContext,listener);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
