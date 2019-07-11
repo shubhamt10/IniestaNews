@@ -30,6 +30,7 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
         mProgressBar = progressBar;
         this.image = image;
         this.desc = desc;
+        this.desc2 = desc2;
         this.title = title;
         this.desc2 = desc2;
         this.date = date;

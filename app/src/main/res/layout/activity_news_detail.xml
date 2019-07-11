@@ -22,7 +22,6 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
@@ -206,7 +205,6 @@
                         android:textSize="16sp"
                         android:padding="6dp"/>
 
-
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -254,9 +252,10 @@
             android:id="@+id/adViewDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-5589355018838308/4655344622">
+            ads:adUnitId="ca-app-pub-5589355018838308/7745963274">
         </com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
