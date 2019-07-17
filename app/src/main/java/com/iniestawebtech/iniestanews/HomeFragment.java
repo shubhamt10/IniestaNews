@@ -2,8 +2,10 @@ package com.iniestawebtech.iniestanews;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.Wave;
@@ -52,32 +55,47 @@ public class HomeFragment extends Fragment {
         Sprite wave = new Wave();
         latestProgressBar.setIndeterminateDrawable(wave);
 
-
-
         init();
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    if (!(AppStatus.getInstance(getContext()).isOnline())) {
 
-                //init();
-                if(a%2==0)
-                {
-                    downloadTask.clearAll(latestRecyclerView);
-                    mdownloadtask = new DownloadTask(latestRecyclerView,latestProgressBar,getContext());
-                    mdownloadtask.execute(latestUrl);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("Network Issue");
+                        builder.setMessage("Check Your Internet Connection");
+                        builder.setIcon(R.drawable.png);
+                        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onRefresh();
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
 
+                    //init();
+                    else if (a % 2 == 0)
+                    {
+                        downloadTask.clearAll(latestRecyclerView);
+                        mdownloadtask = new DownloadTask(latestRecyclerView, latestProgressBar, getContext());
+                        mdownloadtask.execute(latestUrl);
+                    }
+                     else {
+
+                            mdownloadtask.clearAll(latestRecyclerView);
+                            downloadTask = new DownloadTask(latestRecyclerView, latestProgressBar, getContext());
+                            downloadTask.execute(latestUrl);
+                        }
+
+                    swipeRefreshLayout.setRefreshing(false);
+                    a++;
                 }
-                else
-                {
-                    mdownloadtask.clearAll(latestRecyclerView);
-                    downloadTask = new DownloadTask(latestRecyclerView,latestProgressBar,getContext());
-                    downloadTask.execute(latestUrl);
-                }
-                swipeRefreshLayout.setRefreshing(false);
-                a++;
-            }
-        });
+            });
+
 
        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -166,13 +184,18 @@ public class HomeFragment extends Fragment {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-        } else{
+        }
+        else
+            {
             downloadTask = new DownloadTask(latestRecyclerView,latestProgressBar,getContext());
             downloadTask.execute(latestUrl);
-        }
+
+           }
+
+    }
     }
 
-}
+
 
 //Currently using
 //ca-app-pub-5589355018838308~9779092060

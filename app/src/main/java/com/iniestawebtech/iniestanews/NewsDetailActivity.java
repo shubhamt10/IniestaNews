@@ -1,9 +1,12 @@
 package com.iniestawebtech.iniestanews;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,16 +28,16 @@ import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener{
+public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private ImageView imageView;
-    private TextView title, Description,desc2, date;
+    private TextView title, Description, desc2, date;
     private boolean isHideToolbarView = false;
     private FrameLayout date_behavior;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
-    private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3 , mContent4, cid, nid ;
-    private AdView mAdViewDetails,mAdViewLarge;
+    private String mUrl, mImg, mTitle, mDate, mContent1, mContent2, mContent3, mContent4, cid, nid;
+    private AdView mAdViewDetails, mAdViewLarge;
 
 
     @Override
@@ -42,12 +45,13 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
 
+
         mAdViewDetails = findViewById(R.id.adViewDetails);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("CB16DA826794B43D622CE543526D0165").build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdViewDetails.loadAd(adRequest);
 
         mAdViewLarge = findViewById(R.id.adViewLarge);
-        AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("CB16DA826794B43D622CE543526D0165").build();
+        AdRequest adRequest2 = new AdRequest.Builder().build();
         mAdViewLarge.loadAd(adRequest2);
 
         toolbar = findViewById(R.id.toolbar);
@@ -80,25 +84,25 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         mContent4 = intent.getStringExtra("content4");
         nid = intent.getStringExtra("nid");
         cid = intent.getStringExtra("cid");
-        if(Build.VERSION.SDK_INT > 26) {
+        if (Build.VERSION.SDK_INT > 26) {
             Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
-        Description.setText(mContent1+"\n\n"+mContent2+"\n");
-        desc2.setText(mContent3+"\n\n"+mContent4+"\n");
+        Description.setText(mContent1 + "\n\n" + mContent2 + "\n");
+        desc2.setText(mContent3 + "\n\n" + mContent4 + "\n");
         title.setText(mTitle);
         date.setText(mDate);
 
-        if(nid!=null)
-        {
+        if (nid != null) {
             ProgressBar newsProgressBar;
             newsProgressBar = findViewById(R.id.newsProgressBar);
             Sprite threeBounce = new ThreeBounce();
             newsProgressBar.setIndeterminateDrawable(threeBounce);
 
-            String url = "http://www.iniestanews.com/api/singlenewsapi.php?nid="+nid;
-            mUrl = "http://www.iniestanews.com/news.php?cid="+cid+"&nid="+nid;
-            new SingleDownloadTask(this,newsProgressBar, imageView,Description,desc2,date,title).execute(url);
-        }else {
+            String url = "http://www.iniestanews.com/api/singlenewsapi.php?nid=" + nid;
+            mUrl = "http://www.iniestanews.com/news.php?cid=" + cid + "&nid=" + nid;
+
+            new SingleDownloadTask(this, newsProgressBar, imageView, Description, desc2, date, title).execute(url);
+        } else {
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.error(Utils.getRandomDrawbleColor());
@@ -194,8 +198,8 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 //            startActivity(i);
 //            return true;
 //        }
-            if (id == R.id.share){
-                try{
+        if (id == R.id.share) {
+            try {
 
 //                    Intent i = new Intent(Intent.ACTION_SEND);
 //                    i.putExtra(Intent.EXTRA_SUBJECT, mSource);
@@ -203,18 +207,24 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
 //                    i.putExtra(Intent.EXTRA_TEXT, body);
 //                    startActivity(Intent.createChooser(i, "Share with :"));
 
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, mUrl);
-                    sendIntent.setType("text/plain");
-                    startActivity(sendIntent);
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, mUrl);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
 
 
-                }catch (Exception e){
-                    Toast.makeText(this, "Cannot be shared", Toast.LENGTH_SHORT).show();
-                }
+            } catch (Exception e) {
+                Toast.makeText(this, "Cannot be shared", Toast.LENGTH_SHORT).show();
             }
+        }
 
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+
+
+
+

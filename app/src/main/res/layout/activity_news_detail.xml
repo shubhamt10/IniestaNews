@@ -271,6 +271,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/white"
             app:SpinKit_Color="@color/colorAccent"
             android:visibility="invisible"/>
     </RelativeLayout>

@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-5589355018838308/4655344622">
     </com.google.android.gms.ads.AdView>

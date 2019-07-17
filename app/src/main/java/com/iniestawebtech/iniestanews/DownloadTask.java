@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
-    private List<NewsItem> newsItems = new ArrayList<>();
+    public List<NewsItem> newsItems = new ArrayList<>();
     private Context mContext;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
