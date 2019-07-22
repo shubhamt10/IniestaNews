@@ -27,6 +27,7 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
     RecyclerView.LayoutManager manager;
     NewsAdapter adapter;
 
+
     public DownloadTask(RecyclerView recyclerView, ProgressBar progressBar, Context context) {
         mContext = context;
         mRecyclerView = recyclerView;
@@ -37,7 +38,9 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
     {
         mRecyclerView = recyclerView;
         newsItems.clear();
-        adapter.notifyDataSetChanged();
+        if(adapter!= null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

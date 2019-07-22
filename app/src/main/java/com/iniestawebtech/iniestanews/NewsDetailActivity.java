@@ -87,8 +87,8 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         if (Build.VERSION.SDK_INT > 26) {
             Description.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
-        Description.setText(mContent1 + "\n\n" + mContent2 + "\n");
-        desc2.setText(mContent3 + "\n\n" + mContent4 + "\n");
+        Description.setText(mContent1 + "\n\n");
+        desc2.setText(mContent2 + "\n" +mContent3 + "\n\n" + mContent4 + "\n");
         title.setText(mTitle);
         date.setText(mDate);
 
