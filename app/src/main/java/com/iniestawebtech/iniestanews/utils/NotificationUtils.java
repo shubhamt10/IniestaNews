@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews.utils;
+package com.iniestawebtech.iniestanews.utils;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,10 +16,9 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 
-import com.iniesta.iniestanews.MainActivity;
-import com.iniesta.iniestanews.NewsDetailActivity;
-import com.iniesta.iniestanews.R;
-import com.iniesta.iniestanews.vo.NotificationVO;
+import com.iniestawebtech.iniestanews.NewsDetailActivity;
+import com.iniestawebtech.iniestanews.R;
+import com.iniestawebtech.iniestanews.vo.NotificationVO;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,6 +61,7 @@ public class NotificationUtils {
             Bitmap iconBitMap = null;
             if (iconUrl != null) {
                 iconBitMap = getBitmapFromURL(iconUrl);
+                System.out.println("Icon bitmap not null");
             }
             final int icon = R.mipmap.ic_launcher;
 

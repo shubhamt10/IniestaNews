@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

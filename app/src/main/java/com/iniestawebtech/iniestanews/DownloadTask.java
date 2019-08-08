@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,16 +20,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
-    private List<NewsItem> newsItems = new ArrayList<>();
+    public List<NewsItem> newsItems = new ArrayList<>();
     private Context mContext;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
+    RecyclerView.LayoutManager manager;
+    NewsAdapter adapter;
+
 
     public DownloadTask(RecyclerView recyclerView, ProgressBar progressBar, Context context) {
         mContext = context;
         mRecyclerView = recyclerView;
         mProgressBar = progressBar;
+    }
 
+    public void clearAll(RecyclerView recyclerView)
+    {
+        mRecyclerView = recyclerView;
+        newsItems.clear();
+        if(adapter!= null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -64,8 +74,8 @@ public class DownloadTask extends AsyncTask<String,Integer, List<NewsItem>> {
         };
 
 
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(mContext);
-        NewsAdapter adapter = new NewsAdapter(newsItems,mContext,listener);
+        manager = new LinearLayoutManager(mContext);
+        adapter = new NewsAdapter(newsItems,mContext,listener);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 

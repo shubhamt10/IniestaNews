@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews.vo;
+package com.iniestawebtech.iniestanews.vo;
 
 public class NotificationVO {
     private String title;

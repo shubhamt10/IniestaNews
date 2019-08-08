@@ -1,27 +1,23 @@
-package com.iniesta.iniestanews.services;
+package com.iniestawebtech.iniestanews.services;
 
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.iniesta.iniestanews.MainActivity;
-import com.iniesta.iniestanews.NewsDetailActivity;
-import com.iniesta.iniestanews.utils.NotificationUtils;
-import com.iniesta.iniestanews.vo.NotificationVO;
+import com.iniestawebtech.iniestanews.NewsDetailActivity;
+import com.iniestawebtech.iniestanews.utils.NotificationUtils;
+import com.iniestawebtech.iniestanews.vo.NotificationVO;
 
 import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgingService";
-    private static final String TITLE = "title";
-    private static final String EMPTY = "";
-    private static final String MESSAGE = "message";
+    private static final String TITLE = "heading";
     private static final String IMAGE = "image";
     private static final String ACTION = "action";
-    private static final String DATA = "data";
+    private static final String CID = "cid";
+    private static final String NID = "nid";
     private static final String ACTION_DESTINATION = "action_destination";
 
     @Override
@@ -57,24 +53,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void handleData(Map<String, String> data) {
         String title = data.get(TITLE);
-        String message = data.get(MESSAGE);
         String iconUrl = data.get(IMAGE);
+        String nid = data.get(NID);
         String action = data.get(ACTION);
+        String cid = data.get(CID);
+
         String actionDestination = data.get(ACTION_DESTINATION);
         NotificationVO notificationVO = new NotificationVO();
         notificationVO.setTitle(title);
-        notificationVO.setMessage(message);
         notificationVO.setIconUrl(iconUrl);
+        notificationVO.setMessage("");
         notificationVO.setAction(action);
         notificationVO.setActionDestination(actionDestination);
 
         Intent resultIntent = new Intent(getApplicationContext(), NewsDetailActivity.class);
         resultIntent.putExtra("title", title);
         resultIntent.putExtra("img",iconUrl);
-        resultIntent.putExtra("content1" , message);
-        resultIntent.putExtra("content2",message);
-        resultIntent.putExtra("content3",message);
-        resultIntent.putExtra("content4",message);
+        resultIntent.putExtra("nid",nid);
+        resultIntent.putExtra("cid",cid);
 
         NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
         notificationUtils.displayNotification(notificationVO, resultIntent);

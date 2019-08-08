@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

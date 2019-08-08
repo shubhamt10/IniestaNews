@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 public class NewsItem {
     private String cid;
