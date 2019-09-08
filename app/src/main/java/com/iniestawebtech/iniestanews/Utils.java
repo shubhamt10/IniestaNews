@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

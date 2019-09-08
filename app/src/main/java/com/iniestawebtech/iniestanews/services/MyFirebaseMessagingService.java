@@ -1,16 +1,13 @@
-package com.iniesta.iniestanews.services;
+package com.iniestawebtech.iniestanews.services;
 
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.iniesta.iniestanews.MainActivity;
-import com.iniesta.iniestanews.NewsDetailActivity;
-import com.iniesta.iniestanews.utils.NotificationUtils;
-import com.iniesta.iniestanews.vo.NotificationVO;
+import com.iniestawebtech.iniestanews.NewsDetailActivity;
+import com.iniestawebtech.iniestanews.utils.NotificationUtils;
+import com.iniestawebtech.iniestanews.vo.NotificationVO;
 
 import java.util.Map;
 

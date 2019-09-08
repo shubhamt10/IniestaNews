@@ -1,11 +1,7 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.os.AsyncTask;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,17 +10,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
     NewsItem newsItem;
@@ -40,6 +32,7 @@ public class SingleDownloadTask extends AsyncTask<String,Integer, NewsItem > {
         this.desc = desc;
         this.desc2 = desc2;
         this.title = title;
+        this.desc2 = desc2;
         this.date = date;
     }
 

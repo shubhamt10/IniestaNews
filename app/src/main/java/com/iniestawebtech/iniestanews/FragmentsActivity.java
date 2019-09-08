@@ -1,4 +1,4 @@
-package com.iniesta.iniestanews;
+package com.iniestawebtech.iniestanews;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
