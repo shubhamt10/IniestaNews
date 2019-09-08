@@ -1,8 +1,6 @@
 package com.iniesta.iniestanews;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 public class About_us extends Fragment {
     private TextView urllink;
@@ -23,20 +20,15 @@ public class About_us extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_about_us, container, false);
-
         fb = v.findViewById(R.id.fb);
         insta = v.findViewById(R.id.insta);
         twitter = v.findViewById(R.id.twitter);
         linkedIn = v.findViewById(R.id.linkedin);
-
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +38,6 @@ public class About_us extends Fragment {
                 startActivity(i);
             }
         });
-
         insta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +47,6 @@ public class About_us extends Fragment {
                 startActivity(i);
             }
         });
-
         twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +56,6 @@ public class About_us extends Fragment {
                 startActivity(i);
             }
         });
-
         linkedIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +65,6 @@ public class About_us extends Fragment {
                 startActivity(i);
             }
         });
-
         urllink = v.findViewById(R.id.urllink);
         urllink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +75,7 @@ public class About_us extends Fragment {
                 startActivity(i);
             }
 
-        });
-
-        return v;
-    }
-
-}
+        }); return v; }}
 
 
 

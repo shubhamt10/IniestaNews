@@ -13,14 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.Wave;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 public class HomeFragment extends Fragment {
 
@@ -29,7 +25,6 @@ public class HomeFragment extends Fragment {
     private AdView mAdView;
     public String latestUrl ;
     View view;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +34,6 @@ public class HomeFragment extends Fragment {
             e.getMessage();
         }
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,77 +43,24 @@ public class HomeFragment extends Fragment {
         latestProgressBar = view.findViewById(R.id.latestProgressBar);
         Sprite wave = new Wave();
         latestProgressBar.setIndeterminateDrawable(wave);
-
         init();
-
         mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-//                .addTestDevice("67219F41FBCD43C8B4236BC141E830D9")
-//                .addTestDevice("8F3D79A8C87E3791214A712C9FBAE215").build();
         mAdView.loadAd(adRequest);
-
-//        mAdView.setAdListener(new AdListener(){
-//            @Override
-//            public void onAdClosed() {
-//                super.onAdClosed();
-//            }
-//
-//            @Override
-//            public void onAdFailedToLoad(int i) {
-//                System.out.println("Ad failed to load");
-//                AdRequest adRequest = new AdRequest.Builder().build();
-//                mAdView.loadAd(adRequest);
-//                super.onAdFailedToLoad(i);
-//            }
-//
-//            @Override
-//            public void onAdLeftApplication() {
-//                super.onAdLeftApplication();
-//            }
-//
-//            @Override
-//            public void onAdOpened() {
-//                super.onAdOpened();
-//            }
-//
-//            @Override
-//            public void onAdLoaded() {
-//                super.onAdLoaded();
-//            }
-//
-//            @Override
-//            public void onAdClicked() {
-//                super.onAdClicked();
-//            }
-//
-//            @Override
-//            public void onAdImpression() {
-//                super.onAdImpression();
-//            }
-//        });
-
         return view;
     }
     @Override
     public void onResume() {
         SharedPreferences sp = getActivity().getSharedPreferences("check" , Context.MODE_PRIVATE);
-        int a=sp.getInt("cj",0);
-
-        if(a==0)
-        {
-
-            view.setBackgroundColor(getResources().getColor(R.color.black));
-        }
+        int a = sp.getInt("cj",0);
+        if(a==0) {
+            view.setBackgroundColor(getResources().getColor(R.color.black)); }
         else {
-
-            view.setBackgroundColor(getResources().getColor(R.color.white));
-        }
+            view.setBackgroundColor(getResources().getColor(R.color.white)); }
         super.onResume();
     }
-
     public void init() {
         if (!(AppStatus.getInstance(getContext()).isOnline())) {
-
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Network Issue");
             builder.setMessage("Check Your Internet Connection");
@@ -131,14 +72,9 @@ public class HomeFragment extends Fragment {
                     dialog.dismiss();
                 }
             });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            AlertDialog dialog = builder.create(); dialog.show();
         } else{
-            new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl);
-        }
-    }
-
-}
+            new DownloadTask(latestRecyclerView,latestProgressBar,getContext()).execute(latestUrl); } }}
 
 //Currently using
 //ca-app-pub-5589355018838308~9779092060

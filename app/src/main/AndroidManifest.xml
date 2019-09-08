@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.iniesta.iniestanews">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.iniesta.iniestanews">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/iniesta_logo"
@@ -16,14 +12,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <service android:name=".services.MyFirebaseInstanceIdService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
+            <intent-filter><action android:name="com.google.firebase.INSTANCE_ID_EVENT" /></intent-filter>
         </service>
         <service android:name=".services.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
+            <intent-filter><action android:name="com.google.firebase.MESSAGING_EVENT" /></intent-filter>
         </service>
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".FragmentsActivity" />
@@ -41,5 +33,4 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5589355018838308~7806932209"/>
     </application>
-
 </manifest>
